@@ -4,19 +4,20 @@ package_name = 'bridge_service'
 
 setup(
     name=package_name,
-    version='0.0.1',
+    version='0.0.0',
     packages=[package_name],
     data_files=[
-        ('share/ament_index/resource_index/packages', ['resource/' + package_name]),
+        ('share/ament_index/resource_index/packages',
+            ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
-            ('share/' + package_name + '/config', ['config/mapping.yaml']),
+        ('share/' + package_name + '/config', ['config/mapping.yaml']),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='Your Name',
-    maintainer_email='you@example.com',
-    description='ROS2 → Yamcs Bridge Service',
-    license='Apache-2.0',
+    maintainer='your_name',
+    maintainer_email='your@email.com',
+    description='ROS2 bridge service for Yamcs',
+    license='Apache License 2.0',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
