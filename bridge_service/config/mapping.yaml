@@ -1,0 +1,405 @@
+topics:
+  - name: /fmu/out/vehicle_status
+    type: px4_msgs.msg.VehicleStatus
+    time_field: timestamp
+    pack:
+      - field: timestamp
+        type: timestamp
+        name: vehicle_status.timestamp
+      - field: nav_state
+        type: uint8
+        name: vehicle_status.nav_state
+      - field: arming_state
+        type: uint8
+        name: vehicle_status.arming_state
+
+  - name: /fmu/out/sensor_gyro
+    type: px4_msgs.msg.SensorGyro
+    time_field: timestamp
+    pack:
+      - field: timestamp
+        type: timestamp
+        name: gyro.timestamp
+      - field: xyz[0]
+        type: float
+        name: gyro.x
+      - field: xyz[1]
+        type: float
+        name: gyro.y
+      - field: xyz[2]
+        type: float
+        name: gyro.z
+
+  - name: /fmu/out/position_setpoint_triplet
+    type: px4_msgs.msg.PositionSetpointTriplet
+    time_field: timestamp
+    pack:
+      - field: timestamp
+        type: timestamp
+        name: pos_sp.timestamp
+
+  - name: /fmu/out/sensor_mag
+    type: px4_msgs.msg.SensorMag
+    time_field: timestamp
+    pack:
+      - field: timestamp
+        type: timestamp
+        name: mag.timestamp
+      - field: xyz[0]
+        type: float
+        name: mag.x
+      - field: xyz[1]
+        type: float
+        name: mag.y
+      - field: xyz[2]
+        type: float
+        name: mag.z
+
+  - name: /fmu/out/timesync_status
+    type: px4_msgs.msg.TimesyncStatus
+    time_field: timestamp
+    pack:
+      - field: timestamp
+        type: timestamp
+        name: timesync.timestamp
+      - field: remote_timestamp
+        type: uint64
+        name: timesync.remote
+
+  - name: /fmu/out/vehicle_control_mode
+    type: px4_msgs.msg.VehicleControlMode
+    time_field: timestamp
+    pack:
+      - field: timestamp
+        type: timestamp
+        name: control_mode.timestamp
+      - field: flag_armed
+        type: uint8
+        name: control_mode.armed
+
+  - name: /fmu/out/vehicle_magnetometer
+    type: px4_msgs.msg.VehicleMagnetometer
+    time_field: timestamp
+    pack:
+      - field: timestamp
+        type: timestamp
+        name: mag_vehicle.timestamp
+      - field: mag[0]
+        type: float
+        name: mag_vehicle.x
+      - field: mag[1]
+        type: float
+        name: mag_vehicle.y
+      - field: mag[2]
+        type: float
+        name: mag_vehicle.z
+
+  - name: /fmu/out/battery_status
+    type: px4_msgs.msg.BatteryStatus
+    time_field: timestamp
+    pack:
+      - field: timestamp
+        type: timestamp
+        name: battery.timestamp
+      - field: voltage_v
+        type: float
+        name: battery.voltage
+      - field: current_a
+        type: float
+        name: battery.current
+
+  - name: /fmu/out/sensor_baro
+    type: px4_msgs.msg.SensorBaro
+    time_field: timestamp
+    pack:
+      - field: timestamp
+        type: timestamp
+        name: baro.timestamp
+      - field: pressure
+        type: float
+        name: baro.pressure
+      - field: temperature
+        type: float
+        name: baro.temperature
+
+  - name: /fmu/out/vehicle_global_position
+    type: px4_msgs.msg.VehicleGlobalPosition
+    time_field: timestamp
+    pack:
+      - field: timestamp
+        type: timestamp
+        name: global_pos.timestamp
+      - field: lat
+        type: double
+        name: global_pos.lat
+      - field: lon
+        type: double
+        name: global_pos.lon
+      - field: alt
+        type: float
+        name: global_pos.alt
+
+  - name: /fmu/out/vehicle_imu
+    type: px4_msgs.msg.VehicleImu
+    time_field: timestamp
+    pack:
+      - field: timestamp
+        type: timestamp
+        name: imu.timestamp
+      - field: accel_m_s2[0]
+        type: float
+        name: imu.accel_x
+      - field: accel_m_s2[1]
+        type: float
+        name: imu.accel_y
+      - field: accel_m_s2[2]
+        type: float
+        name: imu.accel_z
+      - field: gyro_rad[0]
+        type: float
+        name: imu.gyro_x
+      - field: gyro_rad[1]
+        type: float
+        name: imu.gyro_y
+      - field: gyro_rad[2]
+        type: float
+        name: imu.gyro_z
+
+  - name: /fmu/out/vehicle_local_position
+    type: px4_msgs.msg.VehicleLocalPosition
+    time_field: timestamp
+    pack:
+      - field: timestamp
+        type: timestamp
+        name: local_pos.timestamp
+      - field: x
+        type: float
+        name: local_pos.x
+      - field: y
+        type: float
+        name: local_pos.y
+      - field: z
+        type: float
+        name: local_pos.z
+
+  - name: /fmu/out/vehicle_odometry
+    type: px4_msgs.msg.VehicleOdometry
+    time_field: timestamp
+    pack:
+      - field: timestamp
+        type: timestamp
+        name: odom.timestamp
+      - field: position[0]
+        type: float
+        name: odom.x
+      - field: position[1]
+        type: float
+        name: odom.y
+      - field: position[2]
+        type: float
+        name: odom.z
+
+  - name: /fmu/out/vehicle_air_data
+    type: px4_msgs.msg.VehicleAirData
+    time_field: timestamp
+    pack:
+      - field: timestamp
+        type: timestamp
+        name: air_data.timestamp
+      - field: baro_temp_celcius
+        type: float
+        name: air_data.temp
+      - field: baro_pressure_pa
+        type: float
+        name: air_data.pressure
+
+  - name: /fmu/out/sensor_gps
+    type: px4_msgs.msg.SensorGps
+    time_field: timestamp
+    pack:
+      - field: timestamp
+        type: timestamp
+        name: gps.timestamp
+      - field: lat
+        type: int32
+        name: gps.lat
+      - field: lon
+        type: int32
+        name: gps.lon
+      - field: alt
+        type: int32
+        name: gps.alt
+
+  - name: /rosout
+    type: rcl_interfaces.msg.Log
+    time_field: stamp.sec
+    pack:
+      - field: stamp.sec
+        type: uint32
+        name: rosout.sec
+      - field: level
+        type: uint8
+        name: rosout.level
+
+  - name: /fmu/out/failsafe_flags
+    type: px4_msgs.msg.FailsafeFlags
+    time_field: timestamp
+    pack:
+      - field: timestamp
+        type: timestamp
+        name: failsafe.timestamp
+      - field: mode_req_early
+        type: uint8
+        name: failsafe.mode
+
+  - name: /fmu/out/sensor_combined
+    type: px4_msgs.msg.SensorCombined
+    time_field: timestamp
+    pack:
+      - field: timestamp
+        type: timestamp
+        name: sensor_combined.timestamp
+      - field: gyro_rad[0]
+        type: float
+        name: sensor_combined.gyro_x
+      - field: gyro_rad[1]
+        type: float
+        name: sensor_combined.gyro_y
+      - field: gyro_rad[2]
+        type: float
+        name: sensor_combined.gyro_z
+
+  - name: /events/write_split
+    type: rosbag2_interfaces.msg.WriteSplitEvent
+    time_field: timestamp
+    pack:
+      - field: timestamp
+        type: timestamp
+        name: write_split.timestamp
+
+  - name: /fmu/in/actuator_test
+    type: px4_msgs.msg.ActuatorTest
+    time_field: timestamp
+    pack:
+      - field: timestamp
+        type: timestamp
+        name: actuator_test.timestamp
+      - field: action
+        type: uint8
+        name: actuator_test.action
+
+  - name: /gnc/gnc_debug_signal_a
+    type: gnccunstom_msg.msg.GncDebugSignal
+    time_field: timestamp
+    pack:
+      - field: timestamp
+        type: timestamp
+        name: gnc_a.timestamp
+      - field: value
+        type: float
+        name: gnc_a.value
+
+  - name: /gnc/gnc_debug_signal_b
+    type: gnccunstom_msg.msg.GncDebugSignal
+    time_field: timestamp
+    pack:
+      - field: timestamp
+        type: timestamp
+        name: gnc_b.timestamp
+      - field: value
+        type: float
+        name: gnc_b.value
+
+  - name: /gnc/gnc_debug_signal_c
+    type: gnccunstom_msg.msg.GncDebugSignal
+    time_field: timestamp
+    pack:
+      - field: timestamp
+        type: timestamp
+        name: gnc_c.timestamp
+      - field: value
+        type: float
+        name: gnc_c.value
+
+  - name: /fmu/in/offboard_control_mode
+    type: px4_msgs.msg.OffboardControlMode
+    time_field: timestamp
+    pack:
+      - field: timestamp
+        type: timestamp
+        name: offboard.timestamp
+      - field: position
+        type: uint8
+        name: offboard.position
+
+  - name: /fmu/out/sensor_accel
+    type: px4_msgs.msg.SensorAccel
+    time_field: timestamp
+    pack:
+      - field: timestamp
+        type: timestamp
+        name: accel.timestamp
+      - field: xyz[0]
+        type: float
+        name: accel.x
+      - field: xyz[1]
+        type: float
+        name: accel.y
+      - field: xyz[2]
+        type: float
+        name: accel.z
+
+  - name: /fmu/out/input_rc
+    type: px4_msgs.msg.InputRc
+    time_field: timestamp
+    pack:
+      - field: timestamp
+        type: timestamp
+        name: rc.timestamp
+      - field: channel_count
+        type: uint8
+        name: rc.channels
+
+  - name: /fmu/out/vehicle_attitude
+    type: px4_msgs.msg.VehicleAttitude
+    time_field: timestamp
+    pack:
+      - field: timestamp
+        type: timestamp
+        name: attitude.timestamp
+      - field: q[0]
+        type: float
+        name: attitude.q0
+      - field: q[1]
+        type: float
+        name: attitude.q1
+      - field: q[2]
+        type: float
+        name: attitude.q2
+      - field: q[3]
+        type: float
+        name: attitude.q3
+
+  - name: /parameter_events
+    type: rcl_interfaces.msg.ParameterEvent
+    time_field: stamp.sec
+    pack:
+      - field: stamp.sec
+        type: uint32
+        name: param_event.sec
+
+  - name: /fmu/out/distance_sensor
+    type: px4_msgs.msg.DistanceSensor
+    time_field: timestamp
+    pack:
+      - field: timestamp
+        type: timestamp
+        name: dist.timestamp
+      - field: current_distance
+        type: float
+        name: dist.current
+
+yamcs:
+  protocol: udp
+  host: 127.0.0.1
+  port: 10015

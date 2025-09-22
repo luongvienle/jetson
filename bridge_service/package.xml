@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>bridge_service</name>
+  <version>0.0.1</version>
+  <description>ROS2 → Yamcs Bridge Service</description>
+
+  <maintainer email="vienll@tech.ét-rouge@example.com">VienLL</maintainer>
+  <license>Apache-2.0</license>
+
+  <buildtool_depend>ament_python</buildtool_depend>
+
+  <depend>rclpy</depend>
+  <depend>px4_msgs</depend>
+
+  <exec_depend>python3-yaml</exec_depend>
+  <exec_depend>python3-asyncio</exec_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>
