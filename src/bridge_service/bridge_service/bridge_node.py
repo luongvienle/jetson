@@ -30,7 +30,7 @@ class BridgeNode(Node):
         super().__init__('ros2_yamcs_bridge')
 
         # Declare and get ROS parameters
-        self.declare_parameter('mapping', 'bridge_service/mapping.yaml')
+        self.declare_parameter('mapping', 'src/bridge_service/mapping.yaml')
         self.declare_parameter('protocol', 'udp')
         self.declare_parameter('yamcs_host', '127.0.0.1')
         self.declare_parameter('yamcs_port', 10015)
