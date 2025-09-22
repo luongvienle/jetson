@@ -288,38 +288,38 @@ topics:
         type: uint8
         name: actuator_test.action
 
-  - name: /gnc/gnc_debug_signal_a
-    type: gnccunstom_msg.msg.GncDebugSignal
-    time_field: timestamp
-    pack:
-      - field: timestamp
-        type: timestamp
-        name: gnc_a.timestamp
-      - field: value
-        type: float
-        name: gnc_a.value
+  # - name: /gnc/gnc_debug_signal_a
+  #   type: gnccunstom_msg.msg.GncDebugSignal
+  #   time_field: timestamp
+  #   pack:
+  #     - field: timestamp
+  #       type: timestamp
+  #       name: gnc_a.timestamp
+  #     - field: value
+  #       type: float
+  #       name: gnc_a.value
 
-  - name: /gnc/gnc_debug_signal_b
-    type: gnccunstom_msg.msg.GncDebugSignal
-    time_field: timestamp
-    pack:
-      - field: timestamp
-        type: timestamp
-        name: gnc_b.timestamp
-      - field: value
-        type: float
-        name: gnc_b.value
+  # - name: /gnc/gnc_debug_signal_b
+  #   type: gnccunstom_msg.msg.GncDebugSignal
+  #   time_field: timestamp
+  #   pack:
+  #     - field: timestamp
+  #       type: timestamp
+  #       name: gnc_b.timestamp
+  #     - field: value
+  #       type: float
+  #       name: gnc_b.value
 
-  - name: /gnc/gnc_debug_signal_c
-    type: gnccunstom_msg.msg.GncDebugSignal
-    time_field: timestamp
-    pack:
-      - field: timestamp
-        type: timestamp
-        name: gnc_c.timestamp
-      - field: value
-        type: float
-        name: gnc_c.value
+  # - name: /gnc/gnc_debug_signal_c
+  #   type: gnccunstom_msg.msg.GncDebugSignal
+  #   time_field: timestamp
+  #   pack:
+  #     - field: timestamp
+  #       type: timestamp
+  #       name: gnc_c.timestamp
+  #     - field: value
+  #       type: float
+  #       name: gnc_c.value
 
   - name: /fmu/in/offboard_control_mode
     type: px4_msgs.msg.OffboardControlMode
