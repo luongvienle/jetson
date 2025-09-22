@@ -5,8 +5,8 @@ import rclpy
 from rclpy.node import Node
 import argparse
 import importlib
-from bridge_service.packers import load_mapping, import_msg_class, pack_message_by_definition
-from bridge_service.datalink import UDPClient, TCPClient
+from src.bridge_service.bridge_service.packers import load_mapping, import_msg_class, pack_message_by_definition
+from src.bridge_service.bridge_service.datalink import UDPClient, TCPClient
 
 class TopicSubscriber:
     def __init__(self, node: Node, topic_conf: dict, send_cb):
@@ -63,7 +63,7 @@ class BridgeNode(Node):
 
 def main(argv=None):
     parser = argparse.ArgumentParser()
-    parser.add_argument('mapping', nargs='?', default='bridge_service/config/mapping.yaml', help='path to mapping.yaml (default: bridge_service/config/mapping.yaml)')
+    parser.add_argument('mapping', nargs='?', default='bridge_service/mapping.yaml', help='path to mapping.yaml (default: bridge_service/config/mapping.yaml)')
     parser.add_argument('--protocol', default='udp', choices=['udp','tcp'])
     parser.add_argument('--yamcs-host', default='127.0.0.1')
     parser.add_argument('--yamcs-port', default=10015, type=int)
