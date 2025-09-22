@@ -4,9 +4,9 @@ import asyncio
 import rclpy
 from rclpy.node import Node
 import argparse
-import importlib
-from src.bridge_service.bridge_service.packers import load_mapping, import_msg_class, pack_message_by_definition
-from src.bridge_service.bridge_service.datalink import UDPClient, TCPClient
+from bridge_service.packers import load_mapping, import_msg_class, pack_message_by_definition
+from bridge_service.datalink import UDPClient, TCPClient
+
 
 class TopicSubscriber:
     def __init__(self, node: Node, topic_conf: dict, send_cb):
