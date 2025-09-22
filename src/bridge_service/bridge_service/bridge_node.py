@@ -1,9 +1,7 @@
-# bridge_node.py
 import sys
 import asyncio
 import rclpy
 from rclpy.node import Node
-import argparse
 from bridge_service.packers import load_mapping, import_msg_class, pack_message_by_definition
 from bridge_service.datalink import UDPClient, TCPClient
 
@@ -24,55 +22,67 @@ class TopicSubscriber:
         except Exception as e:
             self.node.get_logger().error(f"Packing error for topic {self.topic_conf['name']}: {e}")
             return
-        # Optionally prefix with metadata (topic id, length). For now send raw payload.
         asyncio.ensure_future(self.send_cb(payload))
 
+
 class BridgeNode(Node):
-    def __init__(self, mapping, protocol, yamcs_host, yamcs_port):
+    def __init__(self):
         super().__init__('ros2_yamcs_bridge')
+
+        # Declare and get ROS parameters
+        self.declare_parameter('mapping', 'bridge_service/mapping.yaml')
+        self.declare_parameter('protocol', 'udp')
+        self.declare_parameter('yamcs_host', '127.0.0.1')
+        self.declare_parameter('yamcs_port', 10015)
+
+        mapping_path = self.get_parameter('mapping').get_parameter_value().string_value
+        protocol = self.get_parameter('protocol').get_parameter_value().string_value
+        yamcs_host = self.get_parameter('yamcs_host').get_parameter_value().string_value
+        yamcs_port = self.get_parameter('yamcs_port').get_parameter_value().integer_value
+
         self.get_logger().info('Bridge node starting...')
-        self.mapping = mapping
+        self.get_logger().info(f'Loading mapping from: {mapping_path}')
+
+        try:
+            self.mapping = load_mapping(mapping_path)
+        except Exception as e:
+            self.get_logger().error(f"Failed to load mapping file: {e}")
+            raise
+
         self.protocol = protocol
         self.yamcs_host = yamcs_host
         self.yamcs_port = yamcs_port
         self.loop = asyncio.get_event_loop()
+
         if protocol.lower() == 'udp':
             self.client = UDPClient(yamcs_host, yamcs_port)
         else:
             self.client = TCPClient(yamcs_host, yamcs_port)
+
         self.subscribers = []
-        for t in mapping.get('topics', []):
+        for t in self.mapping.get('topics', []):
             sub = TopicSubscriber(self, t, self.async_send)
             self.subscribers.append(sub)
-        self.get_logger().info(f"Subscribed {len(self.subscribers)} topics.")
+
+        self.get_logger().info(f"Subscribed to {len(self.subscribers)} topics.")
 
     async def async_send(self, payload: bytes):
-        # Here you can add envelope, sequence number or timestamp prefix
         try:
             await self.client.send(payload)
         except Exception as e:
             self.get_logger().error(f"Error sending payload: {e}")
 
     def destroy_node(self):
-        # ensure client closed
         try:
             self.loop.run_until_complete(self.client.close())
         except Exception:
             pass
         super().destroy_node()
 
-def main(argv=None):
-    parser = argparse.ArgumentParser()
-    parser.add_argument('mapping', nargs='?', default='bridge_service/mapping.yaml', help='path to mapping.yaml (default: bridge_service/mapping.yaml)')
-    parser.add_argument('--protocol', default='udp', choices=['udp','tcp'])
-    parser.add_argument('--yamcs-host', default='127.0.0.1')
-    parser.add_argument('--yamcs-port', default=10015, type=int)
-    args = parser.parse_args(argv[1:] if argv else None)
 
-    mapping = load_mapping(args.mapping)
-    # init rclpy
-    rclpy.init()
-    bridge = BridgeNode(mapping, args.protocol, args.yamcs_host, args.yamcs_port)
+def main(argv=None):
+    rclpy.init(args=argv)
+    bridge = BridgeNode()
     try:
         rclpy.spin(bridge)
     except KeyboardInterrupt:
@@ -81,6 +91,7 @@ def main(argv=None):
         bridge.get_logger().info('Shutting down bridge...')
         bridge.destroy_node()
         rclpy.shutdown()
+
 
 if __name__ == '__main__':
     main(sys.argv)
